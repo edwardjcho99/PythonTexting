@@ -26,7 +26,6 @@ class MessageCarrier:
 
         # Establish a secure session with gmail's outgoing SMTP server
         self.server = smtplib.SMTP_SSL("smtp.gmail.com")
-  #      self.server.starttls()
         self.server.login(username,password)
 
     # Input: string, string, string
