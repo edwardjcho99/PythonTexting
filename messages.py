@@ -22,13 +22,13 @@ class MessageCarrier:
         self.password = password
 
         # Establish a secure session with gmail's incoming IMAP server
-        self.con = imaplib.IMAP4_SSL("imap.gmail.com")
-        self.con.login(username,password)
+        self.imap_server = imaplib.IMAP4_SSL("imap.gmail.com")
+        self.imap_server.login(username,password)
 
         # Establish a secure session with gmail's outgoing SMTP server
-        self.server = smtplib.SMTP_SSL("smtp.gmail.com")
+        self.smtp_server = smtplib.SMTP_SSL("smtp.gmail.com")
   #      self.server.starttls()
-        self.server.login(username,password)
+        self.smtp_server.login(username,password)
 
     # Input: string, string, string
     # header: subject title of the message
@@ -41,11 +41,11 @@ class MessageCarrier:
     # be able to figure out whether it is sending
     # an email or phone number.
     def sendMessage(self,message,address,header=''):
-        self.server.sendmail(header,address,message)
+        self.smtp_server.sendmail(header,address,message)
 
     # gets the most recent message in this instance's gmail
     def get_newest_message(self):
-        result, data = self.con.fetch(self.con.select()[1][0],'(RFC822)')
+        result, data = self.imap_server.fetch(self.imap_server.select()[1][0],'(RFC822)')
         raw = email.message_from_bytes(data[0][1])
         def get_message(msg):
             if msg.is_multipart():
