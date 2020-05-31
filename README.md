@@ -4,7 +4,8 @@ PythonTexting is a package I created that assists in easy SMS texting to and fro
 # How To Use
 In the example.py module, I perform the two functions that this package can do.
 
-First, you must make a MessageCarrier object, inputing your gmail username and password.  
+First, you must make a MessageCarrier object, inputing your gmail username and password:  
+`<MessageCarrierObjectName> = messages.MessageCarrier("example@gmail.com","password")`
 
 To send a message, simply:  
 `<MessageCarrierObjectName>.send_message("your message here","1234567890@carrier.com")`
