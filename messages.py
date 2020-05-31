@@ -1,4 +1,3 @@
-import random
 import smtplib, ssl
 import imaplib,email
 
